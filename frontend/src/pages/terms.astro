@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Terms of Service">
+  <Header variant="solid" />
+
+  <div class="container-page py-12 lg:py-16">
+    <h1 class="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">Terms of service</h1>
+    <p class="mt-2 text-sm text-text-muted">Last updated: July 2026</p>
+
+    <div class="prose-policy mt-8 max-w-3xl space-y-6 text-[15px] leading-relaxed text-text-secondary">
+      <p>
+        These terms govern your use of the MaxMac Safaris website and the booking of travel services through us. By using this site or confirming a booking, you agree to these terms.
+      </p>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Bookings &amp; payments</h2>
+        <p class="mt-2">
+          A booking is confirmed once payment is received according to the payment terms shown at checkout. Prices are quoted in the store currency (typically KES) and may be displayed in other currencies for convenience only.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Cancellations &amp; changes</h2>
+        <p class="mt-2">
+          Cancellation and amendment policies vary by trip and are communicated at the time of booking. Park fees, permits, and supplier deposits may be non-refundable once confirmed.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Travel requirements</h2>
+        <p class="mt-2">
+          You are responsible for valid passports, visas, vaccinations, and travel insurance. We can advise but cannot guarantee entry to any country or park.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Liability</h2>
+        <p class="mt-2">
+          Safaris involve inherent risks in remote wilderness areas. MaxMac Safaris acts as an agent for licensed operators and guides. Our liability is limited to the extent permitted by applicable law.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Contact</h2>
+        <p class="mt-2">
+          Questions about these terms? Email <a href="mailto:hello@maxmacsafaris.com" class="text-safari-green hover:underline">hello@maxmacsafaris.com</a>.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>

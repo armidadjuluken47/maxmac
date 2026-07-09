@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Cookie Policy">
+  <Header variant="solid" />
+
+  <div class="container-page py-12 lg:py-16">
+    <h1 class="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">Cookie policy</h1>
+    <p class="mt-2 text-sm text-text-muted">Last updated: July 2026</p>
+
+    <div class="prose-policy mt-8 max-w-3xl space-y-6 text-[15px] leading-relaxed text-text-secondary">
+      <p>
+        This site uses a small number of cookies and browser storage mechanisms to keep the site working and to remember your preferences.
+      </p>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Essential storage</h2>
+        <ul class="mt-2 list-disc space-y-1 pl-5">
+          <li><strong>Cart selection</strong> — stored in your browser (localStorage) so your chosen trip persists between pages until checkout.</li>
+          <li><strong>Currency preference</strong> — stored in sessionStorage so prices display in your chosen currency.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Analytics</h2>
+        <p class="mt-2">
+          We do not currently use third-party advertising or tracking cookies. If we add analytics in future, this page will be updated.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Managing cookies</h2>
+        <p class="mt-2">
+          You can clear site data through your browser settings at any time. Clearing storage will reset your cart and currency preference.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Contact</h2>
+        <p class="mt-2">
+          Questions? Email <a href="mailto:hello@maxmacsafaris.com" class="text-safari-green hover:underline">hello@maxmacsafaris.com</a>.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>

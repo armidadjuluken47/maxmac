@@ -1,0 +1,5 @@
+2026-07-09 07:13:01 FATAL PHP Fatal Error: Uncaught Error: Call to undefined method WPTravelEngine\Core\Models\Post\Trip::get_from_price() in Command line code:13 in Command line code on line 13 CONTEXT: {"error_type":1,"file":"Command line code","line":13,"source":"wptravelengine"}
+STACK TRACE:
+#0 {main}
+  thrown
+--------------------------------------------------------------------------------

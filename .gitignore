@@ -1,0 +1,11 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# WordPress local database (contains site data; do not commit production DBs)
+wordpress-maxmac/wp-content/database/.ht.sqlite
+
+# OS / editor
+.DS_Store
+.idea/

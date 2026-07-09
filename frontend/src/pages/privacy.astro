@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy Policy">
+  <Header variant="solid" />
+
+  <div class="container-page py-12 lg:py-16">
+    <h1 class="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">Privacy policy</h1>
+    <p class="mt-2 text-sm text-text-muted">Last updated: July 2026</p>
+
+    <div class="prose-policy mt-8 max-w-3xl space-y-6 text-[15px] leading-relaxed text-text-secondary">
+      <p>
+        MaxMac Safaris ("we", "us") respects your privacy. This policy explains what personal data we collect when you browse our website, enquire about a trip, or make a booking, and how we use it.
+      </p>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">What we collect</h2>
+        <ul class="mt-2 list-disc space-y-1 pl-5">
+          <li>Contact details you provide (name, email, phone) when you submit an enquiry or checkout form.</li>
+          <li>Booking and traveller information required to arrange your safari.</li>
+          <li>Technical data such as browser type and approximate location (for currency display).</li>
+          <li>Payment is processed by Paystack; we do not store full card details on our servers.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">How we use your data</h2>
+        <p class="mt-2">
+          We use your information to respond to enquiries, prepare itineraries, process bookings, send trip confirmations, and improve our services. We do not sell your personal data to third parties.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Your rights</h2>
+        <p class="mt-2">
+          You may request access, correction, or deletion of your personal data by contacting us at
+          <a href="mailto:hello@maxmacsafaris.com" class="text-safari-green hover:underline">hello@maxmacsafaris.com</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-text-primary">Contact</h2>
+        <p class="mt-2">
+          Questions about this policy? Email <a href="mailto:hello@maxmacsafaris.com" class="text-safari-green hover:underline">hello@maxmacsafaris.com</a>
+          or visit our <a href="/contact" class="text-safari-green hover:underline">contact page</a>.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
