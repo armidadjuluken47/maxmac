@@ -13,6 +13,16 @@ fi
 # shellcheck disable=SC1090
 source "$ENV_FILE"
 
+# Auto-detect PHP-FPM socket if deploy/env points at a missing file (common 502 cause).
+_sock="${PHP_FPM_SOCK#unix:}"
+if [[ -z "${PHP_FPM_SOCK:-}" ]] || [[ ! -S "$_sock" ]]; then
+  _detected="$(find /run/php -name 'php*-fpm.sock' 2>/dev/null | head -1)"
+  if [[ -n "$_detected" ]]; then
+    echo "Using detected PHP-FPM socket: unix:${_detected}"
+    PHP_FPM_SOCK="unix:${_detected}"
+  fi
+fi
+
 for var in APP_ROOT FRONTEND_DOMAIN FRONTEND_DOMAIN_WWW WP_DOMAIN PHP_FPM_SOCK; do
   if [[ -z "${!var:-}" ]]; then
     echo "Set ${var} in deploy/env"

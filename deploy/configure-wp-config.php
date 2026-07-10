@@ -84,3 +84,15 @@ echo "OK: configured {$config}\n";
 echo "    backup: {$backup}\n";
 echo "    database: {$db_name} @ {$db_host}\n";
 echo "    SF_FRONTEND_ORIGIN: {$origin}\n";
+
+// Disable SQLite drop-in (local dev only). Production uses MySQL.
+$wp_content = dirname( $config ) . '/wp-content';
+$dropin     = $wp_content . '/db.php';
+$disabled   = $wp_content . '/db.php.sqlite-local-dev';
+if ( is_file( $dropin ) ) {
+	if ( rename( $dropin, $disabled ) ) {
+		echo "    sqlite drop-in: disabled (renamed to db.php.sqlite-local-dev)\n";
+	} else {
+		fwrite( STDERR, "Warning: could not rename {$dropin} — remove it manually for MySQL\n" );
+	}
+}

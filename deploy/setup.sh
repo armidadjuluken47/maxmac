@@ -35,7 +35,7 @@ echo ""
 
 echo "==> Install system packages"
 export DEBIAN_FRONTEND=noninteractive
-apt-get update -qq
+apt-get update -qq --allow-releaseinfo-change 2>/dev/null || apt-get update -qq
 apt-get install -y -qq nginx mariadb-server \
   php-fpm php-mysql php-xml php-curl php-mbstring php-zip php-gd php-intl \
   git unzip certbot python3-certbot-nginx curl
@@ -54,6 +54,21 @@ if [[ -z "$PHP_SOCK" ]]; then
 fi
 PHP_FPM_SOCK="unix:${PHP_SOCK}"
 echo "    PHP-FPM:       $PHP_FPM_SOCK"
+
+# Persist detected socket so install-nginx.sh and re-runs use the right path.
+if grep -q '^PHP_FPM_SOCK=' "$ENV_FILE" 2>/dev/null; then
+  sed -i "s|^PHP_FPM_SOCK=.*|PHP_FPM_SOCK=${PHP_FPM_SOCK}|" "$ENV_FILE"
+else
+  echo "PHP_FPM_SOCK=${PHP_FPM_SOCK}" >>"$ENV_FILE"
+fi
+
+# Ensure PHP-FPM is running (apt package name varies: php8.3-fpm, php-fpm, etc.)
+_php_svc="$(systemctl list-units --type=service --all 'php*-fpm.service' 2>/dev/null | awk '/php.*fpm/ {print $1; exit}')"
+if [[ -n "$_php_svc" ]]; then
+  systemctl enable "$_php_svc" 2>/dev/null || true
+  systemctl start "$_php_svc" 2>/dev/null || true
+  echo "    PHP service:   $_php_svc"
+fi
 
 echo "==> Create MySQL database (if missing)"
 DB_NAME="${MYSQL_DB:-maxmac_wp}"
