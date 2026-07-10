@@ -9,6 +9,7 @@ import CtaBand from '../components/CtaBand.astro';
 import { packages as staticPackages, destOptions } from '../data/packages';
 import { getTrips, getDestinations } from '../lib/wte';
 import { formatMoney } from '../lib/money';
+import { SITE_IMAGES, tileImage, destinationImage, resolvePackageImage } from '../lib/images';
 
 // Headless: featured trips come from WordPress, falling back to bundled data.
 const wpPackages = await getTrips();
@@ -41,7 +42,7 @@ const featured = [...picked, ...topUp]
     priceCurrency: p.currency,
     blurb: p.blurb,
     gradient: p.gradient,
-    image: p.imageCard || p.image || '',
+    image: resolvePackageImage(p, 'card'),
     imageAlt: p.imageAlt || '',
   }));
 
@@ -79,6 +80,7 @@ const destBase = (liveDestinations.length
   ...d,
   gradient: DEST_GRADIENTS[d.name] ?? DEST_FALLBACK_GRADIENTS[i % DEST_FALLBACK_GRADIENTS.length],
   tripsLabel: d.trips > 0 ? `${d.trips} ${d.trips === 1 ? 'trip' : 'trips'}` : 'Explore',
+  image: tileImage(d.name) || destinationImage(d.dest || d.name),
 }));
 
 const mobileDestinations = destBase;
@@ -155,6 +157,12 @@ const faqs = [
   <div class="pb-[92px] lg:pb-0">
     <!-- HERO -->
     <div class="relative overflow-hidden bg-gradient-to-br from-[#2b4a34] via-safari-green to-[#3d6b2e] pb-20 sm:pb-28 lg:pb-32">
+      <img
+        src={SITE_IMAGES.hero}
+        alt="Safari landscape across East Africa"
+        decoding="async"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+      />
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[rgba(13,26,18,0.62)] via-[rgba(13,26,18,0.42)] to-[rgba(13,26,18,0.8)]"></div>
       <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(120% 90% at 82% 6%, rgba(212,160,23,0.22), transparent 55%);"></div>
 
@@ -327,6 +335,9 @@ const faqs = [
             class="relative block h-[130px] overflow-hidden rounded-2xl sm:h-[160px]"
             style={`background:linear-gradient(150deg, ${d.gradient[0]}, ${d.gradient[1]});`}
           >
+            {d.image && (
+              <img src={d.image} alt="" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+            )}
             <div class="absolute inset-0 bg-gradient-to-t from-[rgba(15,28,20,0.6)] to-transparent"></div>
             <div class="absolute bottom-3 left-3.5 text-white">
               <div class="text-base font-bold">{d.name}</div>
@@ -344,6 +355,9 @@ const faqs = [
             class="relative block overflow-hidden rounded-card"
             style={`${d.span} background:linear-gradient(150deg, ${d.gradient[0]}, ${d.gradient[1]});`}
           >
+            {d.image && (
+              <img src={d.image} alt="" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+            )}
             <div class="absolute inset-0 bg-gradient-to-t from-[rgba(15,28,20,0.65)] via-[rgba(15,28,20,0.05)] to-transparent"></div>
             <div class="absolute bottom-5 left-5 text-white">
               <div class:list={['font-bold tracking-tight', d.size === '28px' ? 'text-[28px]' : 'text-[22px]']}>{d.name}</div>
