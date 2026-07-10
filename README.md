@@ -80,7 +80,8 @@ Namespace: `/wp-json/safariflow/v1/`
 See **[deploy/QUICKSTART.md](deploy/QUICKSTART.md)** — 4 commands on the server, then finish WP in the browser.
 
 ```bash
-cp deploy/env.example deploy/env && nano deploy/env
+cp deploy/env.example deploy/env && nano deploy/env   # set MYSQL_PASSWORD only
+cp frontend/.env.example frontend/.env
 sudo ./deploy/setup.sh              # once
 ./deploy/deploy.sh                  # each code update
 ```

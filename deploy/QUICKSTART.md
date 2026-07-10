@@ -34,9 +34,10 @@ Wait 5–30 minutes for DNS to propagate.
 git clone <YOUR_REPO_URL> /var/www/maxmac
 cd /var/www/maxmac
 
-# 2) Set your domain names
+# 2) Set your domain names (live values are pre-filled — set MySQL password only)
 cp deploy/env.example deploy/env
-nano deploy/env
+cp frontend/.env.example frontend/.env
+nano deploy/env   # change YOUR_MYSQL_PASSWORD_HERE
 
 # 3) First-time setup (installs nginx/php/mysql tools, builds site, nginx configs)
 sudo ./deploy/setup.sh
